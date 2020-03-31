@@ -3,20 +3,20 @@ FROM debian:buster-slim
 ARG DEBIAN_FRONTEND=noninteractive
 ARG BUILD_CORES
 
-ARG SKALIBS_VER=2.8.1.0
-ARG EXECLINE_VER=2.5.1.0
-ARG S6_VER=2.8.0.1
-ARG RSPAMD_VER=1.9.4
+ARG SKALIBS_VER=2.9.2.0
+ARG EXECLINE_VER=2.6.0.0
+ARG S6_VER=2.9.1.0
+ARG RSPAMD_VER=2.4
 ARG GUCCI_VER=0.1.0
 
-ARG SKALIBS_SHA256_HASH="431c6507b4a0f539b6463b4381b9b9153c86ad75fa3c6bfc9dc4722f00b166ba"
-ARG EXECLINE_SHA256_HASH="b1a756842947488404db8173bbae179d6e78b6ef551ec683acca540ecaf22677"
-ARG S6_SHA256_HASH="dbe08f5b76c15fa32a090779b88fb2de9a9a107c3ac8ce488931dd39aa1c31d8"
-ARG RSPAMD_SHA256_HASH="e4720c1f45defd07dd17b9563d0ddc480c70beadbc1a833235c077960092e030"
+ARG SKALIBS_SHA256_HASH="e4c36e91ddb8f94f7bb61479bb3a5fbdaa423772ba7583151a03ce30003f2dc5"
+ARG EXECLINE_SHA256_HASH="5415f5b98c8e3edb8e94fa9c9d42de1cdb86a8977e9b4212c9122bdcb9dad7d4"
+ARG S6_SHA256_HASH="05e259532c6db8cb23f5f79938669cee30152008ac9e792ff4acb26db9a01ff7"
+ARG RSPAMD_SHA256_HASH="3b4e7171d1d45e8fe4bba59b3f47fed55c1f63ef9f3a191fe9e22cc6c1204d9d"
 ARG GUCCI_SHA256_HASH="44199d8edf88442324951cafeaaea047f524deb8d887a0174cacc3aaff139740"
 
 LABEL description="s6 + rspamd image based on Debian" \
-      maintainer="Hardware <contact@meshup.net>" \
+      maintainer="kingjan1999 <king-jan1999@hotmail.de>" \
       rspamd_version="Rspamd v$RSPAMD_VER built from source" \
       s6_version="s6 v$S6_VER built from source"
 
@@ -26,10 +26,14 @@ RUN NB_CORES=${BUILD_CORES-$(getconf _NPROCESSORS_CONF)} \
     && BUILD_DEPS=" \
     cmake \
     gcc \
+    build-essential \
+    g++ \
     make \
     ragel \
     wget \
     pkg-config \
+    libsodium23 \
+    libsodium-dev \
     liblua5.1-0-dev \
     libluajit-5.1-dev \
     libglib2.0-dev \
